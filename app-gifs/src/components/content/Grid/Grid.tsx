@@ -35,10 +35,11 @@ export const Grid = ({ category }: Props) => {
                     <h1 className='display-5 text-secondary'>Cargando</h1>
                 </div>
             }
-            {imgs.map((img) => (
-                <GridItem key={img.id} {...img}></GridItem>
-            )
-            )}
+            {
+                imgs.map((img) => (
+                    <GridItem key={img.id} {...img}></GridItem>
+                ))
+            }
             <div className="col d-flex justify-content-center my-5">
                 <nav aria-label="...">
                     <ul className="pagination">

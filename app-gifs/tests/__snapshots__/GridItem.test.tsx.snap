@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas <GridItem/> Las props url y alt_description sean obligatorias. 1`] = `
+<div>
+  <div
+    class="col-md-5 col-sm-12 item m-1 d-flex justify-content-center align-items-center g-0"
+  >
+    <img
+      alt="Dragon"
+      class="img-fluid"
+      src="http://www.dragon/dragon.jpg"
+    />
+  </div>
+</div>
+`;

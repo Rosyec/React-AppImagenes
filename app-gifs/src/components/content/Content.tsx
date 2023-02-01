@@ -21,7 +21,7 @@ export const Content = () => {
         </div>
         {
           categories.map((category, i) => (
-            <div key={i} className="row d-flex justify-content-center">
+            <div key={i} className="row d-flex justify-content-center mx-3">
               <Grid key={category} category={category} ></Grid>
             </div>
           ))

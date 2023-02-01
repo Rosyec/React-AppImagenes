@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react'
 
 export const AddCategory = ( { setCategories, categories, emitCategory }:Propiedades ) => {
+
     const [inputValue, setInputValue] = useState('');
 
     const onChangeInput = ( { target }:React.ChangeEvent<HTMLInputElement> ) => {
@@ -18,7 +19,7 @@ export const AddCategory = ( { setCategories, categories, emitCategory }:Propied
     }
 
   return (
-    <form onSubmit={ onSubmit }>
+    <form onSubmit={ onSubmit } aria-label="form">
         <input 
             type="text" 
             className='form-control' 

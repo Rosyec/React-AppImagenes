@@ -14,6 +14,7 @@ const getImages = async ( category: string, pagination?: number  ) => {
         description, 
         alt_description 
     }) );
+    
     return data_images;
 }
 
