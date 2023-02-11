@@ -1,22 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { getImages } from '../services/gif.service';
+import { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { getImagesThunk } from '../app/thunks/thunk';
+import { RootState } from '../store/store';
 
 export const useFetchImage = (category: string, page?:number) => {
 
     const [images, setImages] = useState<Data[]>([]);
     const [isLoading, setIsLoading] = useState( true );
+    const dispatch = useAppDispatch();
+    const { data } = useAppSelector( (state: RootState) => state.images );
 
     const loadImages = async () => {
-        const data = await getImages(category, page);
         setImages(data);
         setIsLoading( false );
     }
-    /** Para que funcione el paginador ese necesario sacar el loadImages del useEffect para que se ejeute a cada cambio.  */
-        loadImages();
 
-    // useEffect(() => {
-    //     loadImages();
-    // }, []);
+    useEffect(() => {
+        dispatch( getImagesThunk({category, pagination: page}) );
+        loadImages();
+    }, [page, category]);
+
+    useEffect(() => {
+        setImages(data);
+    }, [data]);
 
     return {
         imgs: images,

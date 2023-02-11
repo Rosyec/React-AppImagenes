@@ -1,4 +1,5 @@
 import { useFetchImage } from '../../../hooks/useFetchImage';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { GridItem } from '../../export-data';
 import '../Grid/Grid.css'
 import { useState } from 'react';
@@ -24,7 +25,6 @@ export const Grid = ({ category }: Props) => {
             setPage( page + 1 );
         }
     }
-
 
     return (
         <>
