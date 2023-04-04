@@ -4,10 +4,16 @@ import { imagesApi, API_KEY } from "../../services/gif.service";
 
 
 export const getImagesThunk = createAsyncThunk<ImageState, Props, { rejectValue: RejectWithError }>('image/getImages',
-    async ( { category, pagination }, thunkApi ) => {
-
+    async ( props, thunkApi ) => {
         try {
-            const response = await imagesApi(`?query=${ category }&client_id=${ API_KEY }&per_page=10&orientation=portrait&page=${ pagination }`);
+            return await getImagesFromApi(props);
+        } catch (error) {
+            return thunkApi.rejectWithValue({msg: 'Error connection!'});
+        }
+});
+
+async function getImagesFromApi({ category, pagination }: Props) {
+    const response = await imagesApi(`?query=${ category }&client_id=${ API_KEY }&per_page=10&orientation=portrait&page=${ pagination }`);
             const { results }: Image = response.data;
             const imagesResponse = results.map( ( { id, urls, description, alt_description }:Result ) => ({ 
                 id, 
@@ -19,12 +25,7 @@ export const getImagesThunk = createAsyncThunk<ImageState, Props, { rejectValue:
             return {
                 data: imagesResponse
             };
-            
-        } catch (error) {
-            return thunkApi.rejectWithValue({msg: 'Error connection!'})
-        }
-    
-});
+}
 
 interface Props {
     category: string,

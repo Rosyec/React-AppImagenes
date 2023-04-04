@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from 'react'
 
-export const AddCategory = ( { setCategories, categories, emitCategory }:Propiedades ) => {
+export const AddCategory = ( { emitCategory }:Propiedades ) => {
 
     const [inputValue, setInputValue] = useState('');
 
@@ -11,9 +11,6 @@ export const AddCategory = ( { setCategories, categories, emitCategory }:Propied
     const onSubmit = ( event: SyntheticEvent ) => {
         event.preventDefault();
         if ( inputValue.trim().length <= 1 ) return;
-
-        // setCategories( (data) => [ ...data ,inputValue ] );
-        // setCategories( [ ...categories ,inputValue ] );
         emitCategory( inputValue.trim() );
         setInputValue( '' );
     }
